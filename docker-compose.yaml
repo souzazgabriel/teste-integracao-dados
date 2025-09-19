@@ -86,6 +86,22 @@ x-airflow-common:
       condition: service_healthy
 
 services:
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: airflow
+      MYSQL_DATABASE: weather_db
+      MYSQL_USER: airflow
+      MYSQL_PASSWORD: airflow
+    volumes:
+      - mysql-db-volume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "airflow", "-pairflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: no
   postgres:
     image: postgres:13
     environment:
@@ -333,3 +349,4 @@ services:
 
 volumes:
   postgres-db-volume:
+  mysql-db-volume:
