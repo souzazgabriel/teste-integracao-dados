@@ -1,0 +1,12 @@
+# Variáveis de ambiente
+.env
+
+# Pastas de cache do Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Logs do Airflow
+logs/
